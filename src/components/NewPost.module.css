@@ -2,9 +2,9 @@
     background-color: #6233b9;
     padding: 1rem;
     width: 20rem;
-    margin: 2rem auto;
+    /* margin: 2rem auto;
     border-radius: 6px;
-    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2); */
   }
   
   .form label {
@@ -17,7 +17,7 @@
   .form input,
   .form textarea {
     display: block;
-    width: 100%;
+    width: 95%;
     font: inherit;
     padding: 0.5rem;
     border-radius: 6px;

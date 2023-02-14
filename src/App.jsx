@@ -10,7 +10,7 @@ function App() {
     <h1>Posts</h1>
     <Post author='Vangelis' body='Mazis Body' />
     <Post author='Marx' body='Marx Body'/>
-    <Post/>
+  
     </>  
   )
 }

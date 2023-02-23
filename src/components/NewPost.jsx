@@ -2,7 +2,7 @@ import classes from './NewPost.module.css'
 
 
 
-function NewPost({onBodyChange,onAuthorChange}) {
+function NewPost({onBodyChange,onAuthorChange,onCancel}) {
     //    const stateData = useState('')
     //    stateData[0]//current value --> at the begging == ''
     //    stateData[1]//update Function
@@ -21,8 +21,8 @@ function NewPost({onBodyChange,onAuthorChange}) {
                 <textarea id='name' type='text' required onChange={onAuthorChange}/>
             </p>
             <p className={classes.actions}>
-                <button type='button'>Cancel</button>
-                <button>Submit</button>
+                <button type='button' onClick={onCancel}>Cancel</button>
+                <button >Submit</button>
             </p>
         </form>
     );

@@ -13,7 +13,7 @@ function App() {
   }
 
   function showModalHandler() {
-    setModalIsVisible(true)
+    setModalIsVisible(true)//this makes modalIsVisible == true so modal is shown
   }
 
   return (<>

@@ -5,25 +5,30 @@ import Modal from './Modal'
 import { useState } from "react";
 
 function PostsList({isPosting, onStopPosting}) {
+
+    // This will cause infinite loop
+    // fetch('https://localhost:8080/posts').then(response=> response.json()).then(data => {
+    //     setPosts(data.posts)
+    // });
  
-    const [enterBody, setEnterBody] = useState('')
-    const [enterAuthor, setEnterAuthor] = useState('')
+    const [posts,setPosts]=useState([])
 
-    function bodyChangeHandler(event) {
-        setEnterBody(event.target.value)
+    function addPostHandler(postData) {
+        fetch('https://localhost:8080/posts',{
+            method:'POST',
+            body:JSON.stringify(postData),
+            headers:{
+                'Content-Type':'application/json'
+            }
+        });
+        setPosts((existingPosts)=>[postData, ...existingPosts])
     }
-
-    function authorChangeHandler(event) {
-        setEnterAuthor(event.target.value)
-    }
-
-    
 
     let modalContent;
     if (isPosting) {
         modalContent = (
             <Modal onClose={onStopPosting}>
-                <NewPost onBodyChange={bodyChangeHandler} onAuthorChange={authorChangeHandler} onCancel={onStopPosting} />
+                <NewPost onCancel={onStopPosting} onAddPost={addPostHandler} />
             </Modal>
         )
     }
@@ -32,12 +37,19 @@ function PostsList({isPosting, onStopPosting}) {
     return (
         <>
             {modalContent}
-            <ul className={classes.posts} >
-
-                <Post author={enterAuthor} body={enterBody} />
-                <Post author='Marx' body='Marx Body' />
-
-            </ul>
+            {posts.length>0 &&(
+                 <ul className={classes.posts} >
+                    {posts.map((post)=> <Post key={post.body} author={post.author} body={post.body}/>)}
+                </ul>
+            )}
+            
+            {posts.length===0 && (
+                <div style= {{textAlign:'center',color:'white'}}>
+                    <h2>There are no posts yet.</h2>
+                    <p>Start Adding some</p>
+                </div>
+            )}
+           
         </>
     )
 }

@@ -1,15 +1,35 @@
 import React from 'react'
 import ReactDOM from 'react-dom/client'
-import App from './App'
-import NewPost from './components/NewPost'
+
+
+import Posts ,{loader as postsLoader} from './routes/Posts'
+import RootLayout from './routes/RootLayout'
+import NewPost from './routes/NewPost'
 import { RouterProvider,createBrowserRouter } from "react-router-dom";
 import './index.css'
 
 //here you pass all the routes you want to have
 const router =createBrowserRouter([
-  {path:'/',element:  <App />},
-  {path:'/test',element: <h1>test</h1>},
-  {path:'/create-post',element:  <NewPost />}
+  {
+      path:'/',
+      element: <RootLayout/>, 
+      children:[
+        {
+          path: '/' ,
+          element: <Posts />,
+          loader: postsLoader,
+          children: [
+            { path: '/create-post', element: <NewPost /> }
+          ]
+        },
+        {
+          path:'/test',
+          element: <h1>test</h1>
+        },
+       
+      ]
+  },
+ 
 ])
 ReactDOM.createRoot(document.getElementById('root')).render(
   <React.StrictMode>

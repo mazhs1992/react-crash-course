@@ -1,8 +1,12 @@
 import { MdPostAdd, MdMessage } from 'react-icons/md';
+import {Link} from 'react-router-dom'
+
+//Link 
+//it behaves like an <a> tag but without sending a request
 
 import classes from './MainHeader.module.css';
 
-function MainHeader({ onCreatePost }) {
+function MainHeader() {
   return (
     <header className={classes.header}>
       <h1 className={classes.logo}>
@@ -10,10 +14,11 @@ function MainHeader({ onCreatePost }) {
         React Poster
       </h1>
       <p>
-        <button className={classes.button} onClick={onCreatePost}>
-          <MdPostAdd size={18} />
-          New Post
-        </button>
+
+          <Link to='/create-post' className={classes.button} >
+            <MdPostAdd size={18} />
+            New Post
+          </Link>
       </p>
     </header>
   );

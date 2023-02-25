@@ -6,6 +6,7 @@ import Posts ,{loader as postsLoader} from './routes/Posts'
 import RootLayout from './routes/RootLayout'
 import NewPost, { action as newPostAction} from './routes/NewPost'
 import { RouterProvider,createBrowserRouter } from "react-router-dom";
+import PostDetails , {loader as PostDetailsLoader} from './routes/PostDetails'
 import './index.css'
 
 //here you pass all the routes you want to have
@@ -19,7 +20,8 @@ const router =createBrowserRouter([
           element: <Posts />,
           loader: postsLoader,
           children: [
-            { path: '/create-post', element: <NewPost /> , action: newPostAction} //actions handle forms
+            { path: '/create-post', element: <NewPost /> , action: newPostAction} ,//actions handle forms
+            { path: '/:id', element: <PostDetails/> , loader: PostDetailsLoader} 
           ]
         },
         {
